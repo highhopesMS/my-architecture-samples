@@ -1,5 +1,6 @@
-package com.highhopes.myapplication.di.di.utils
+package com.highhopes.myapplication.di.di
 
+import com.highhopes.myapplication.di.di.utils.ActivityScoped
 import com.highhopes.myapplication.ui.login.LoginActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

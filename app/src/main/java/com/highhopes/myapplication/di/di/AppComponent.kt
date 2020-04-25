@@ -1,7 +1,6 @@
 package com.highhopes.myapplication.di.di
 
 import com.highhopes.myapplication.MyApplication
-import com.highhopes.myapplication.di.di.utils.ActivityBindingModule
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
