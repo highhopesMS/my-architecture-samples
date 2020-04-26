@@ -1,11 +1,7 @@
 package com.highhopes.myapplication.data
 
-import androidx.lifecycle.LiveData
-import com.highhopes.myapplication.data.model.LoggedInUser
-import com.highhopes.myapplication.di.di.User
+import com.highhopes.myapplication.data.model.User
 import com.highhopes.myapplication.di.di.UserApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
@@ -13,42 +9,7 @@ import javax.inject.Inject
  * maintains an in-memory cache of login status and user credentials information.
  */
 
-class LoginRepository @Inject constructor(val dataSource: LoginDataSource, val userApi: UserApi) {
-
-  // in-memory cache of the loggedInUser object
-  var user: LoggedInUser? = null
-    private set
-
-  val isLoggedIn: Boolean
-    get() = user != null
-
-  init {
-    // If user credentials will be cached in local storage, it is recommended it be encrypted
-    // @see https://developer.android.com/training/articles/keystore
-    user = null
-  }
-
-  fun logout() {
-    user = null
-    dataSource.logout()
-  }
-
-  fun login(username: String, password: String): Result<LoggedInUser> {
-    // handle login
-    val result = dataSource.login(username, password)
-
-    if (result is Result.Success) {
-      setLoggedInUser(result.data)
-    }
-
-    return result
-  }
-
-  private fun setLoggedInUser(loggedInUser: LoggedInUser) {
-    this.user = loggedInUser
-    // If user credentials will be cached in local storage, it is recommended it be encrypted
-    // @see https://developer.android.com/training/articles/keystore
-  }
+class LoginRepository @Inject constructor(val dataSource: LocalUserDataSource, val userApi: UserApi) {
 
   suspend fun loginTemp() : User {
          return userApi.loadUser()

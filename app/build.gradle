@@ -49,6 +49,7 @@ ext {
     roomVersion = '2.2.5'
     retrofitVersion = '2.8.1'
     gsonVersion = '2.8.6'
+    timberVersion ='4.7.1'
 }
 
 dependencies {
@@ -86,6 +87,8 @@ dependencies {
 
     //Gson
     implementation "com.google.code.gson:gson:$gsonVersion"
+
+    implementation "com.jakewharton.timber:timber:$timberVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

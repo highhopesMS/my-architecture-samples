@@ -1,6 +1,7 @@
 package com.highhopes.myapplication.di.di
 
 import android.content.Context
+import androidx.room.Room
 import com.highhopes.myapplication.MyApplication
 import com.highhopes.myapplication.data.RetrofitBuilder
 
@@ -27,10 +28,16 @@ open class AppModule {
         return RetrofitBuilder().retrofit
     }
 
-//    @Provides
-//    fun provideCompositeSubscription(): CompositeDisposable {
-//        return CompositeDisposable()
-//    }
+    @Provides
+    @Singleton
+    fun provideDataBase(context: Context): MyDatabase {
+        return Room.databaseBuilder(
+            context.applicationContext,
+            MyDatabase::class.java, "MyDatabase.db"
+        ).build()
+
+    }
+
 
 
 }

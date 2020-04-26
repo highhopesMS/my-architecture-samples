@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.highhopes.myapplication.R
 import com.highhopes.myapplication.data.Result
 import dagger.android.support.DaggerAppCompatActivity
+import timber.log.Timber
 import javax.inject.Inject
 
 class LoginActivity : DaggerAppCompatActivity() {
@@ -39,13 +40,16 @@ class LoginActivity : DaggerAppCompatActivity() {
             when (it) {
                 is Result.Loading -> {
                     loading.visibility = View.VISIBLE
+                    Timber.d("loading")
                 }
                 is Result.Success -> {
                     loading.visibility = View.GONE
                     username.setText(it.data.accountName)
+                    Timber.d("success")
                 }
                 is Result.Error -> {
                     loading.visibility = View.GONE
+                    Timber.d("error")
                 }
             }
         })
