@@ -1,4 +1,5 @@
 package com.highhopes.myapplication.data
+
 /**
  * A generic class that holds a value with its loading status.
  * @param <T>

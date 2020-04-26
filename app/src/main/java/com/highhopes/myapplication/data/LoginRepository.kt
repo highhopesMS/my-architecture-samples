@@ -1,7 +1,11 @@
 package com.highhopes.myapplication.data
 
+import androidx.lifecycle.LiveData
 import com.highhopes.myapplication.data.model.LoggedInUser
+import com.highhopes.myapplication.di.di.User
 import com.highhopes.myapplication.di.di.UserApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
@@ -46,7 +50,7 @@ class LoginRepository @Inject constructor(val dataSource: LoginDataSource, val u
     // @see https://developer.android.com/training/articles/keystore
   }
 
-  suspend fun loginTemp() {
-    userApi.loadUser()
+  suspend fun loginTemp() : User {
+         return userApi.loadUser()
   }
 }
