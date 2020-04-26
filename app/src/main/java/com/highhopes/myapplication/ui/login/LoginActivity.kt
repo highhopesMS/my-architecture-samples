@@ -35,6 +35,8 @@ class LoginActivity : DaggerAppCompatActivity() {
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
 
+        viewModel.loginTemp()
+
 
         viewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer

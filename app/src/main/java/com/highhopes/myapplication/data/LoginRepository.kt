@@ -1,6 +1,7 @@
 package com.highhopes.myapplication.data
 
 import com.highhopes.myapplication.data.model.LoggedInUser
+import com.highhopes.myapplication.di.di.UserApi
 import javax.inject.Inject
 
 /**
@@ -8,7 +9,7 @@ import javax.inject.Inject
  * maintains an in-memory cache of login status and user credentials information.
  */
 
-class LoginRepository @Inject constructor(val dataSource: LoginDataSource) {
+class LoginRepository @Inject constructor(val dataSource: LoginDataSource, val userApi: UserApi) {
 
   // in-memory cache of the loggedInUser object
   var user: LoggedInUser? = null
@@ -43,5 +44,9 @@ class LoginRepository @Inject constructor(val dataSource: LoginDataSource) {
     this.user = loggedInUser
     // If user credentials will be cached in local storage, it is recommended it be encrypted
     // @see https://developer.android.com/training/articles/keystore
+  }
+
+  suspend fun loginTemp() {
+    userApi.loadUser("")
   }
 }

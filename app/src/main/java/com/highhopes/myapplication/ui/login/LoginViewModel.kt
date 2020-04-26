@@ -4,9 +4,11 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.highhopes.myapplication.R
 import com.highhopes.myapplication.data.LoginRepository
 import com.highhopes.myapplication.data.Result
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) :
@@ -52,5 +54,11 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 5
+    }
+
+    fun loginTemp() {
+        viewModelScope.launch {
+            loginRepository.loginTemp()
+        }
     }
 }
