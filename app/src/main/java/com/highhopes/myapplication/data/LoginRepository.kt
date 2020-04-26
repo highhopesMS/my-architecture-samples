@@ -47,6 +47,6 @@ class LoginRepository @Inject constructor(val dataSource: LoginDataSource, val u
   }
 
   suspend fun loginTemp() {
-    userApi.loadUser("")
+    userApi.loadUser()
   }
 }

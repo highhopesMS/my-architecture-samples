@@ -5,8 +5,8 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface UserApi {
-    @GET("/open{id}")
-    suspend fun loadUser(@Query("id") id: String): User
+    @GET("highhopesMS/my-architecture-samples/master/user.json")
+    suspend fun loadUser(): User
 }
 
 data class User(val id: Long, val name: String, val lastName: String, val accountName: String)
