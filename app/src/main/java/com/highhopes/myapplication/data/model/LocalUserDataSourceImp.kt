@@ -12,7 +12,7 @@ class LocalUserDataSourceImp @Inject constructor(private val myDatabase: MyDatab
         myDatabase.userDao().save(user)
     }
 
-    override suspend fun getUser(): Flow<User> {
+    override suspend fun getUser(): User? {
         return myDatabase.userDao().getUser()
     }
 

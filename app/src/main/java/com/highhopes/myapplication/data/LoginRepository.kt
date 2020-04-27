@@ -19,10 +19,10 @@ class LoginRepository @Inject constructor(
 ) {
 
     suspend fun login() = flow<Result<User>> {
-//        dataSource.getUser().collect {
-//            emit(Result.Success(it))
-//            Timber.tag("TEST").d("from db")
-//        }
+        dataSource.getUser()?.let {
+            emit(Result.Success(it))
+            Timber.tag("TEST").d("from db $it")
+        }
 
         try {
             delay(5_000)
@@ -38,6 +38,5 @@ class LoginRepository @Inject constructor(
         }
 
     }
-
-
+    
 }
