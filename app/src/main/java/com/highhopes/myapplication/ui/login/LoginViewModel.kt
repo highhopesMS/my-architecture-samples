@@ -9,6 +9,7 @@ import com.highhopes.myapplication.data.Result
 import com.highhopes.myapplication.data.model.User
 import com.highhopes.myapplication.di.di.utils.cancelIfActive
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
@@ -34,11 +35,12 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
                         Timber.tag("TEST").d("loading")
                     }
                     .catch {
-                        _loginResult.value = Result.Error(Exception(it))
+                        _loginResult.postValue(Result.Error(Exception(it)))
                         Timber.tag("TEST").d("error")
                     }
+
                     .collect { data ->
-                        _loginResult.value = data
+                        _loginResult.postValue(data)
                     }
             }
         }
