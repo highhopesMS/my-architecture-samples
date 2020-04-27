@@ -35,6 +35,7 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
                     }
                     .catch {
                         _loginResult.value = Result.Error(Exception(it))
+                        Timber.tag("TEST").d("error")
                     }
                     .collect { data ->
                         _loginResult.value = data

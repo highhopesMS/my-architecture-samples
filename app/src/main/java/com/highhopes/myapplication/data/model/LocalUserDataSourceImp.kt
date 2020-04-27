@@ -12,7 +12,7 @@ class LocalUserDataSourceImp @Inject constructor(private val myDatabase: MyDatab
         Timber.tag("TEST").d("save user")
     }
 
-    override suspend fun getUser(): User? {
+    override  fun getUser(): User? {
         return myDatabase.userDao().getUser()
     }
 
