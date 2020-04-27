@@ -1,4 +1,4 @@
-package com.highhopes.myapplication.data.model
+package com.highhopes.myapplication.extensions
 
 import kotlinx.coroutines.Job
 

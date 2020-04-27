@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.highhopes.myapplication.data.model.Result
 import com.highhopes.myapplication.data.model.User
-import com.highhopes.myapplication.data.model.cancelIfActive
+import com.highhopes.myapplication.extensions.cancelIfActive
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.catch
