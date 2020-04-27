@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.highhopes.myapplication.R
 import com.highhopes.myapplication.data.model.Result
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -18,6 +19,7 @@ class LoginActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
