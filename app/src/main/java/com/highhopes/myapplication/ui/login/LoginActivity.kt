@@ -2,9 +2,7 @@ package com.highhopes.myapplication.ui.login
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
+import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.highhopes.myapplication.R
@@ -25,14 +23,14 @@ class LoginActivity : DaggerAppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
-        val username = findViewById<EditText>(R.id.username)
-        val password = findViewById<EditText>(R.id.password)
-        val login = findViewById<Button>(R.id.login)
+        val username = findViewById<TextView>(R.id.username)
+        val lastName = findViewById<TextView>(R.id.lastName)
+        val getUser = findViewById<Button>(R.id.getUser)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
 
-        login.setOnClickListener {
+        getUser.setOnClickListener {
             viewModel.loginTemp()
         }
 
@@ -44,12 +42,14 @@ class LoginActivity : DaggerAppCompatActivity() {
                 }
                 is Result.Success -> {
                     loading.visibility = View.GONE
-                    username.setText(it.data.accountName)
+                    username.text = it.data.name
+                    lastName.text = it.data.lastName
                     Timber.d("success")
                 }
                 is Result.Error -> {
                     loading.visibility = View.GONE
                     Timber.d("error")
+                    Toast.makeText(this, it.exception.message, Toast.LENGTH_SHORT).show()
                 }
             }
         })

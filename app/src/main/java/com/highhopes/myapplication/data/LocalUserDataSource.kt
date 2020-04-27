@@ -1,5 +1,6 @@
 package com.highhopes.myapplication.data
 
+import androidx.lifecycle.LiveData
 import com.highhopes.myapplication.data.model.User
 
 /**
@@ -7,7 +8,7 @@ import com.highhopes.myapplication.data.model.User
  */
 interface LocalUserDataSource {
   suspend fun saveUser(user: User)
-  suspend fun getUser()
+  suspend fun getUser(): LiveData<User>
   suspend fun deleteUser()
 }
 

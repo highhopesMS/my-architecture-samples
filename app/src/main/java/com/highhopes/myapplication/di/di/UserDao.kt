@@ -19,4 +19,7 @@ interface UserDao {
     @Query("SELECT * FROM Users")
     fun observeUsers(): LiveData<List<User>>
 
+    @Query("SELECT * FROM Users LIMIT 1")
+    fun getUser(): LiveData<User>
+
 }
