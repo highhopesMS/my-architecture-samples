@@ -37,7 +37,8 @@ class LoginViewModel @Inject constructor(private val useCase: UseCase) :
                     .catch {
                         _loginResult.postValue(Result.Error(Exception(it)))
                         Timber.tag("TEST").d("error")
-                    }.collect { data ->
+                    }
+                    .collect { data ->
                         _loginResult.postValue(data)
                     }
             }
