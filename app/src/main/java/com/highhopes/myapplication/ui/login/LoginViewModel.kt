@@ -7,9 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.highhopes.myapplication.data.LoginRepository
 import com.highhopes.myapplication.data.Result
 import com.highhopes.myapplication.data.model.User
+import com.highhopes.myapplication.di.di.utils.cancelIfActive
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -23,19 +25,20 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
 
     fun login() {
         viewModelScope.launch {
-            getUsersJob?.let {
-                if (it.isActive) {
-                    it.cancel()
-                }
-            }
-            _loginResult.postValue(Result.Loading)
-
-            Timber.tag("TEST").d("loading")
+            getUsersJob?.cancelIfActive()
 
             getUsersJob = viewModelScope.launch {
-                loginRepository.login().collect { data ->
-                    _loginResult.value = data
-                }
+                loginRepository.login()
+                    .onStart {
+                        _loginResult.postValue(Result.Loading)
+                        Timber.tag("TEST").d("loading")
+                    }
+                    .catch {
+                        _loginResult.value = Result.Error(Exception(it))
+                    }
+                    .collect { data ->
+                        _loginResult.value = data
+                    }
             }
         }
     }
