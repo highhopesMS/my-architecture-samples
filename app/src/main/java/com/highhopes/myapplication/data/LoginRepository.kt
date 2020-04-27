@@ -1,10 +1,9 @@
 package com.highhopes.myapplication.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.switchMap
 import com.highhopes.myapplication.data.model.User
 import com.highhopes.myapplication.di.di.UserApi
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 /**
@@ -17,14 +16,20 @@ class LoginRepository @Inject constructor(
     val userApi: UserApi
 ) {
 
-    suspend fun loginTemp(): User {
-        //delay request
-        //return dataSource.getUser()
-//        delay(3_000)
-        val result = userApi.loadUser()
-//        if (result is User) {
-//            dataSource.saveUser(result)
-//        }
-        return result
+    suspend fun login() = flow<Result<User>> {
+        emit(Result.Loading)
+        try {
+            userApi.loadUser().let {
+                dataSource.saveUser(it)
+                emit(Result.Success(it))
+            }
+        } catch (throwable: Throwable) {
+            emit(Result.Error(Exception(throwable)))
+        } catch (exception: Exception) {
+            emit(Result.Error(exception))
+        }
+
     }
+
+
 }

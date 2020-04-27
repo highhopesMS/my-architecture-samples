@@ -1,11 +1,14 @@
 package com.highhopes.myapplication.ui.login
 
-import android.util.Log
-import androidx.lifecycle.*
-import com.google.gson.Gson
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.highhopes.myapplication.data.LoginRepository
 import com.highhopes.myapplication.data.Result
 import com.highhopes.myapplication.data.model.User
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,21 +17,20 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
 
     private val _loginResult = MutableLiveData<Result<User>>()
     val loginResult: LiveData<Result<User>> = _loginResult
+    private var getUsersJob: Job? = null
 
-
-    fun loginTemp() {
+    fun login() {
         viewModelScope.launch {
-            try {
-                _loginResult.postValue(Result.Loading)
-                val result= loginRepository.loginTemp()
-                _loginResult.postValue(Result.Success(result))
-
-            }catch (throwable : Throwable) {
-                _loginResult.postValue(Result.Error(Exception(throwable)))
-            }catch (exception: Exception){
-                _loginResult.postValue(Result.Error(exception))
+            getUsersJob?.let {
+                if (it.isActive) {
+                    it.cancel()
+                }
             }
-
+            getUsersJob = viewModelScope.launch {
+                loginRepository.login().collect { data ->
+                    _loginResult.value = data
+                }
+            }
         }
     }
 

@@ -3,6 +3,7 @@ package com.highhopes.myapplication.data.model
 import androidx.lifecycle.LiveData
 import com.highhopes.myapplication.data.LocalUserDataSource
 import com.highhopes.myapplication.di.di.MyDatabase
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class LocalUserDataSourceImp @Inject constructor(private val myDatabase: MyDatabase) :
@@ -11,7 +12,7 @@ class LocalUserDataSourceImp @Inject constructor(private val myDatabase: MyDatab
         myDatabase.userDao().save(user)
     }
 
-    override suspend fun getUser(): LiveData<User> {
+    override suspend fun getUser(): Flow<User> {
         return myDatabase.userDao().getUser()
     }
 

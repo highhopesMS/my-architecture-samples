@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.highhopes.myapplication.data.model.User
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Data Access Object for the user table.
@@ -20,6 +21,6 @@ interface UserDao {
     fun observeUsers(): LiveData<List<User>>
 
     @Query("SELECT * FROM Users LIMIT 1")
-    fun getUser(): LiveData<User>
+    fun getUser(): Flow<User>
 
 }

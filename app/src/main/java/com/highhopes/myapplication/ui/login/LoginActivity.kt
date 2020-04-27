@@ -31,7 +31,7 @@ class LoginActivity : DaggerAppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
 
         getUser.setOnClickListener {
-            viewModel.loginTemp()
+            viewModel.login()
         }
 
         viewModel.loginResult.observe(this, Observer {
