@@ -8,8 +8,10 @@ import com.highhopes.myapplication.data.LoginRepository
 import com.highhopes.myapplication.data.Result
 import com.highhopes.myapplication.data.model.User
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) :
@@ -26,6 +28,10 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
                     it.cancel()
                 }
             }
+            _loginResult.postValue(Result.Loading)
+
+            Timber.tag("TEST").d("loading")
+
             getUsersJob = viewModelScope.launch {
                 loginRepository.login().collect { data ->
                     _loginResult.value = data
