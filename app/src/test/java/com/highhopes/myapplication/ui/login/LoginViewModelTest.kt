@@ -40,7 +40,6 @@ class LoginViewModelTest {
     @Mock
     lateinit var useCase: UseCase
 
-
     @Before
     fun setup() {
         viewmodel = LoginViewModel(useCase)

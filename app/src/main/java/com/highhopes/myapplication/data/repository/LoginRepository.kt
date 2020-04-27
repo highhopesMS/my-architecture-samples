@@ -16,15 +16,18 @@ class LoginRepository @Inject constructor(
     private val dataSource: LocalUserDataSource,
     private val userApi: UserApi
 ) {
+    var result: Result<User> = Result.Loading
 
     suspend fun login() = flow<Result<User>> {
         //delay(3_000)
         dataSource.getUser()?.let {
-            emit(Result.Success(it))
+            result = Result.Success(it)
+            emit(result)
             Timber.tag("TEST").d("from db $it")
         }
 
-        userApi.loadUser().let {
+        userApi.loadUser()?.let {
+            result = Result.Success(it)
             dataSource.saveUser(it)
             emit(Result.Success(it))
             Timber.tag("TEST").d("from network")
