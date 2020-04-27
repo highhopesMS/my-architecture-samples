@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
  */
 interface LocalUserDataSource {
   suspend fun saveUser(user: User)
-  fun getUser(): User?
+  suspend fun getUser(): User?
   suspend fun deleteUser()
 }
 

@@ -21,6 +21,6 @@ interface UserDao {
     fun observeUsers(): LiveData<List<User>>
 
     @Query("SELECT * FROM Users LIMIT 1")
-     fun getUser(): User?
+    suspend fun getUser(): User?
 
 }

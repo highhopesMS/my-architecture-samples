@@ -13,17 +13,16 @@ import javax.inject.Inject
  */
 
 class LoginRepository @Inject constructor(
-    val dataSource: LocalUserDataSource,
-    val userApi: UserApi
+    private val dataSource: LocalUserDataSource,
+    private val userApi: UserApi
 ) {
 
     suspend fun login() = flow<Result<User>> {
-        delay(3_000)
+        //delay(3_000)
         dataSource.getUser()?.let {
             emit(Result.Success(it))
             Timber.tag("TEST").d("from db $it")
         }
-
 
         userApi.loadUser().let {
             dataSource.saveUser(it)
