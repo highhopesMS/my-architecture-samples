@@ -1,7 +1,7 @@
-package com.highhopes.myapplication.data.model
+package com.highhopes.myapplication.data.db
 
-import com.highhopes.myapplication.data.LocalUserDataSource
-import com.highhopes.myapplication.di.di.MyDatabase
+import com.highhopes.myapplication.data.repository.LocalUserDataSource
+import com.highhopes.myapplication.data.model.User
 import timber.log.Timber
 import javax.inject.Inject
 

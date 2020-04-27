@@ -6,7 +6,7 @@ import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.highhopes.myapplication.R
-import com.highhopes.myapplication.data.Result
+import com.highhopes.myapplication.data.model.Result
 import dagger.android.support.DaggerAppCompatActivity
 import timber.log.Timber
 import javax.inject.Inject

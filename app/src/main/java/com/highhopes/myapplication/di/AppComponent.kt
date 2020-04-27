@@ -1,6 +1,10 @@
-package com.highhopes.myapplication.di.di
+package com.highhopes.myapplication.di
 
 import com.highhopes.myapplication.MyApplication
+import com.highhopes.myapplication.di.modules.ActivityBindingModule
+import com.highhopes.myapplication.di.modules.AppModule
+import com.highhopes.myapplication.di.modules.LoginModule
+import com.highhopes.myapplication.di.modules.ViewModelModule
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule

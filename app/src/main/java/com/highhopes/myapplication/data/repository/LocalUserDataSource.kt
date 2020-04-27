@@ -1,8 +1,6 @@
-package com.highhopes.myapplication.data
+package com.highhopes.myapplication.data.repository
 
-import androidx.lifecycle.LiveData
 import com.highhopes.myapplication.data.model.User
-import kotlinx.coroutines.flow.Flow
 
 /**
  * Class that handles user data with room dbase

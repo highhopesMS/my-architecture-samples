@@ -1,6 +1,6 @@
 package com.highhopes.myapplication
 
-import com.highhopes.myapplication.di.di.DaggerAppComponent
+import com.highhopes.myapplication.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import timber.log.Timber

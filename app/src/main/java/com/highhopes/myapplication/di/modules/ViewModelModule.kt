@@ -1,9 +1,9 @@
-package com.highhopes.myapplication.di.di
+package com.highhopes.myapplication.di.modules
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.highhopes.myapplication.di.di.utils.MyViewModelFactory
-import com.highhopes.myapplication.di.di.utils.ViewModelKey
+import com.highhopes.myapplication.di.utils.MyViewModelFactory
+import com.highhopes.myapplication.di.utils.ViewModelKey
 import com.highhopes.myapplication.ui.login.LoginViewModel
 import dagger.Binds
 import dagger.Module

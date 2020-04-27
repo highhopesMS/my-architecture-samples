@@ -1,4 +1,4 @@
-package com.highhopes.myapplication.di.di.utils
+package com.highhopes.myapplication.di.utils
 
 import javax.inject.Scope
 

@@ -1,4 +1,4 @@
-package com.highhopes.myapplication.di.di
+package com.highhopes.myapplication.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -11,6 +11,5 @@ import com.highhopes.myapplication.data.model.User
  */
 @Database(entities = [User::class], version = 1, exportSchema = false)
 abstract class MyDatabase : RoomDatabase() {
-
     abstract fun userDao(): UserDao
 }

@@ -1,4 +1,4 @@
-package com.highhopes.myapplication.di.di
+package com.highhopes.myapplication.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.highhopes.myapplication.data.model.User
-import kotlinx.coroutines.flow.Flow
 
 /**
  * Data Access Object for the user table.

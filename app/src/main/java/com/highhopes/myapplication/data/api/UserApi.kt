@@ -1,4 +1,4 @@
-package com.highhopes.myapplication.di.di
+package com.highhopes.myapplication.data.api
 
 import com.highhopes.myapplication.data.model.User
 import retrofit2.http.GET

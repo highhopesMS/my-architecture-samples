@@ -1,9 +1,10 @@
-package com.highhopes.myapplication.di.di
+package com.highhopes.myapplication.di.modules
 
 import android.content.Context
 import androidx.room.Room
 import com.highhopes.myapplication.MyApplication
-import com.highhopes.myapplication.data.RetrofitBuilder
+import com.highhopes.myapplication.data.db.MyDatabase
+import com.highhopes.myapplication.network.RetrofitBuilder
 
 import dagger.Module
 import dagger.Provides

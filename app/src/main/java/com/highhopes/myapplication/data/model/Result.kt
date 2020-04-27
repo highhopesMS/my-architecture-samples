@@ -1,4 +1,4 @@
-package com.highhopes.myapplication.data
+package com.highhopes.myapplication.data.model
 
 /**
  * A generic class that holds a value with its loading status.

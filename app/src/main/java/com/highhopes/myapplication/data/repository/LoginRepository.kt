@@ -1,8 +1,8 @@
-package com.highhopes.myapplication.data
+package com.highhopes.myapplication.data.repository
 
+import com.highhopes.myapplication.data.model.Result
+import com.highhopes.myapplication.data.api.UserApi
 import com.highhopes.myapplication.data.model.User
-import com.highhopes.myapplication.di.di.UserApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 import javax.inject.Inject
